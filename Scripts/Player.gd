@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+var time_frozen = false
+
 #movement stats
 var maxSpeed = 320
 #air accel is higher than grounded to allow for greater air control
@@ -41,11 +43,14 @@ func _process(delta):
 		jumpReq = true
 	
 func _physics_process(delta):
+	if time_frozen:
+		return
+		
 	DoMotion()
 	
 	if jumpReq:
 		Jump()
-	
+
 	move_and_slide_with_snap(motion, curSnap, Vector2.UP, true)
 	ApplyGravity()
 	
