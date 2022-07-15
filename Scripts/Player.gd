@@ -1,7 +1,6 @@
 extends KinematicBody2D
 
 var time_frozen = false
-var oldSpeed = Vector2.ZERO
 
 #movement stats
 var maxSpeed = 320
@@ -54,14 +53,6 @@ func _physics_process(delta):
 	
 	var speed = move_and_slide_with_snap(motion, curSnap, Vector2.UP, true)
 	ApplyGravity()
-	
-	
-	print(speed, oldSpeed, is_on_wall())
-	if abs(speed.x - oldSpeed.x) > 100 && is_on_wall():
-		
-		Jump()
-	
-	oldSpeed = speed
 	
 	
 	
