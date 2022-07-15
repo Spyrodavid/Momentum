@@ -22,15 +22,12 @@ func _ready():
 
 func _process(delta):
 	if transition:
-		print(timer.time_left)
 		oldnode.cam().global_position = newnode.defaultCamPosition.linear_interpolate(oldnode.defaultCamPosition, timer.time_left)
-		print(oldnode.cam().position)
 	
 
 
 
 func NewCam(body):
-	print("Old: " + oldnode.name + ", New: " + newnode.name)
 	if body != newnode:
 		get_node("Player").time_frozen = true
 		newnode = body
