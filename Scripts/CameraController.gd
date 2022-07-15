@@ -6,6 +6,7 @@ var newnode
 
 # bool if camera is switching
 var transition = false
+var transitionTime = .5
 
 var timer
 
@@ -26,7 +27,7 @@ func _ready():
 func _process(delta):
 	if transition:
 		#interpolate if transitioning
-		oldnode.cam().global_position = newnode.defaultCamPosition.linear_interpolate(oldnode.defaultCamPosition, timer.time_left)
+		oldnode.cam().global_position = newnode.defaultCamPosition.linear_interpolate(oldnode.defaultCamPosition, timer.time_left / transitionTime)
 	
 
 
@@ -36,7 +37,7 @@ func NewCam(body):
 		get_node("Player").time_frozen = true
 		newnode = body
 		transition = true
-		timer.start(1)
+		timer.start(transitionTime)
 		
 		#get_node("Player").paused = true
 	
